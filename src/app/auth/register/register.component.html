@@ -1,0 +1,84 @@
+<div class="max-w-4xl mx-auto font-[sans-serif] p-6">
+  <div class="text-center mb-2">
+    <a href="javascript:void(0)"><img src="https://readymadeui.com/readymadeui.svg" alt="logo"
+        class='w-52 inline-block' />
+    </a>
+    <h4 class="text-gray-800 text-base font-semibold mt-6">Crear Cuenta</h4>
+  </div>
+  <div class="flex justify-center gap-10 my-8">
+    <!-- Opción Empresa -->
+    <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+      <input id="bordered-radio-1" type="radio" name="bordered-radio" [value]="'Empresa'"
+        [checked]="selectedOption === 'Empresa'" (change)="onSelectionChange('Empresa')"
+        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+      <label for="bordered-radio-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+        Empresa
+      </label>
+    </div>
+  
+    <!-- Opción Persona -->
+    <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+      <input id="bordered-radio-2" type="radio" name="bordered-radio" [value]="'Persona'"
+        [checked]="selectedOption === 'Persona'" (change)="onSelectionChange('Persona')"
+        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+      <label for="bordered-radio-2" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+        Persona
+      </label>
+    </div>
+  </div>
+  @if (selectedOption === 'Empresa') {
+    <app-form-register-client-company />
+    }
+    @else {
+    <app-form-register-client-person />
+    }
+</div>
+
+
+
+
+
+<!-- <div class="max-w-4xl mx-auto font-[sans-serif] p-6">
+    <div class="text-center mb-16">
+      <a href="javascript:void(0)"><img
+        src="https://readymadeui.com/readymadeui.svg" alt="logo" class='w-52 inline-block' />
+      </a>
+      <h4 class="text-gray-800 text-base font-semibold mt-6">Sign up into your account</h4>
+    </div>
+
+    <form>
+      <div class="grid sm:grid-cols-2 gap-8">
+        <div>
+          <label for="firstName" class="text-gray-800 text-sm mb-2 block">First Name</label>
+          <input id="firstName" name="name" type="text" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter name" />
+        </div>
+        <div>
+          <label for="lastName" class="text-gray-800 text-sm mb-2 block">Last Name</label>
+          <input id="lastName" name="lname" type="text" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter last name" />
+        </div>
+        <div>
+          <label for="email" class="text-gray-800 text-sm mb-2 block">Email Id</label>
+          <input id="email" name="email" type="text" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter email" />
+        </div>
+        <div>
+          <label for="mobileNumber" class="text-gray-800 text-sm mb-2 block">Mobile No.</label>
+          <input id="mobileNumber" name="number" type="number" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter mobile number" />
+        </div>
+        <div>
+          <label for="password" class="text-gray-800 text-sm mb-2 block">Password</label>
+          <input id="password" name="password" type="password" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter password" />
+        </div>
+        <div>
+          <label for="confirmPassword" class="text-gray-800 text-sm mb-2 block">Confirm Password</label>
+          <input id="confirmPassword" name="cpassword" type="password" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter confirm password" />
+        </div>
+      </div>
+
+      <div class="!mt-12">
+        <button type="button" class="py-3.5 px-7 text-sm font-semibold tracking-wider rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
+          Sign up
+        </button>
+      </div>
+    </form>
+  </div> -->
+
