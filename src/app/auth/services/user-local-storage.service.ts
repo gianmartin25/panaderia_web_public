@@ -5,7 +5,7 @@ import { Usuario } from '../../shared/interfaces/user';
   providedIn: 'root'
 })
 export class UserLocalStorageService {
-  setUser(user: Usuario) {
+  setUser(user: Usuario | null) {
     localStorage.setItem('user', JSON.stringify(user));
   }
 

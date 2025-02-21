@@ -31,7 +31,8 @@ export class OrdersComponent implements OnInit {
   }
 
   downloadPdf(comprobanteId: number) {
-    if (this.userStateService.getUser()?.tipoUsuario === '2') {
+    console.log(this.userStateService.getUser()?.tipoCliente);
+    if (this.userStateService.getUser()?.tipoCliente === 'empresa') {
       this.pdfService.downloadPdfFactura(comprobanteId);
     } else {
       this.pdfService.downloadPdfBoleta(comprobanteId);

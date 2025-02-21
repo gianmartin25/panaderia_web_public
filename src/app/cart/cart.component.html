@@ -11,9 +11,9 @@
             <app-cart-item
               class="block"
               [productCartItem]="cartItem"
-              (onRemove)="onRemove($event)"
-              (onDecrease)="onDecrease($event)"
-              (onIncrease)="onIncrease($event)"
+              (remove)="onRemove($event)"
+              (decrease)="onDecrease($event)"
+              (increase)="onIncrease($event)"
             />
           }
         </div>

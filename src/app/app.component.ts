@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './shared/ui/header/header.component';
 import { TokenValidationService } from './auth/services/token-validation.service';
 import { UserStateService } from './auth/services/user-state.service';
+import { UserLocalStorageService } from './auth/services/user-local-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent implements OnInit {
   title = 'signal-store';
   private tokenValidationService = inject(TokenValidationService);
   private userStateService = inject(UserStateService);
+  private userLocalStorageService = inject(UserLocalStorageService);
   
   ngOnInit(): void {
     this.loadUser();
@@ -26,6 +28,7 @@ export class AppComponent implements OnInit {
       this.tokenValidationService.getUserFromToken(token).subscribe({
         next: (data) => {
           this.userStateService.setUser(data);
+          this.userLocalStorageService.setUser(data);
           console.log('User loaded:', data);
         },
         error: (err) => {

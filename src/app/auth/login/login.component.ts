@@ -6,6 +6,7 @@ import { UserRequest } from '../../shared/interfaces/user';
 import { RouterAdapterService } from '../../shared/services/router-adapter.service';
 import { JwtService } from '../services/jwt.service';
 import { UserStateService } from '../services/user-state.service';
+import { UserLocalStorageService } from '../services/user-local-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent {
   private loginUserService = inject(LoginUserService);
   private jwtService = inject(JwtService);
   private userStateService = inject(UserStateService);
+  private userLocalStorageService = inject(UserLocalStorageService);
   private router = inject(RouterAdapterService);
   public errorMessage = '';
 
@@ -40,6 +42,7 @@ export class LoginComponent {
         this.jwtService.saveToken(response.token);
         this.userStateService.setUser(response.usuario);
         this.router.navigate('/products');
+        this.userLocalStorageService.setUser(response.usuario);
       },
       error: ({ error }) => {
         this.errorMessage = error;

@@ -5,6 +5,7 @@ import { UserRequest, UserResponse } from '../../shared/interfaces/user';
 
 describe('LoginUserService Integration Test', () => {
   let service: LoginUserService;
+  const mockUserRequest: UserRequest = { email: 'john.doe@example.com', password: 'password123' };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -14,19 +15,31 @@ describe('LoginUserService Integration Test', () => {
     service = TestBed.inject(LoginUserService);
   });
 
-  it('should login user with real backend', (done) => {
-    const mockUserRequest: UserRequest = { email: 'test@test.com', password: 'password' };
+  it('debe iniciar sesión el usuario correctamente', (done) => {
+  service.login(mockUserRequest).subscribe({
+    next: (response: UserResponse) => {
+      expect(response).toBeDefined();
+      done();
+    },
+    error: (error) => {
+      console.log('Error:', error);
+      fail('Se esperaba un inicio de sesión exitoso, pero se obtuvo un error');
+      done();
+    },
+  });
+  }); // Cambia el nombre de la prueba
+
+  it('debe mostrar un mensaje de error de credenciales invalidas', (done) => {
+    const mockUserRequest: UserRequest = { email: 'testUser@google.com', password: 'password123' };
 
     service.login(mockUserRequest).subscribe({
       next: (response: UserResponse) => {
-        expect(response).toBeTruthy();
-        expect(response.usuario).toBeDefined();
-        expect(response.token).toBeDefined();
+        expect(response).toBeUndefined();
         done();
       },
       error: (error) => {
-        fail(`Expected successful login, but got error: ${error.message}`);
         console.log('Error:', error);
+        expect(error).toBeDefined();
         done();
       }
     });

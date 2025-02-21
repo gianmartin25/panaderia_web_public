@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ProductItemCart } from '../../../shared/interfaces/product.interface';
 import { CurrencyPipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -6,16 +6,16 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-cart-item',
   standalone: true,
-  imports: [CurrencyPipe,RouterModule],
+  imports: [CurrencyPipe, RouterModule],
   templateUrl: './cart-item.component.html',
-  styleUrl: './cart-item.component.scss',
+  styleUrls: ['./cart-item.component.scss'],
 })
 export class CartItemComponent {
-  productCartItem = input.required<ProductItemCart>();
+  @Input() productCartItem!: ProductItemCart;
 
-  onRemove = output<number>();
+  @Output() remove = new EventEmitter<number>();
 
-  onIncrease = output<ProductItemCart>();
+  @Output() increase = new EventEmitter<ProductItemCart>();
 
-  onDecrease = output<ProductItemCart>();
+  @Output() decrease = new EventEmitter<ProductItemCart>();
 }

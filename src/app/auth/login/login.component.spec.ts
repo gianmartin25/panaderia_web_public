@@ -17,10 +17,16 @@ describe('LoginComponent', () => {
   let router: jasmine.SpyObj<RouterAdapterService>;
 
   beforeEach(async () => {
-    const loginUserServiceSpy = jasmine.createSpyObj('LoginUserService', ['login']);
+    const loginUserServiceSpy = jasmine.createSpyObj('LoginUserService', [
+      'login',
+    ]);
     const jwtServiceSpy = jasmine.createSpyObj('JwtService', ['saveToken']);
-    const userMemoryServiceSpy = jasmine.createSpyObj('UserMemoryService', ['setUser']);
-    const routerSpy = jasmine.createSpyObj('RouterAdapterService', ['navigate']);
+    const userMemoryServiceSpy = jasmine.createSpyObj('UserMemoryService', [
+      'setUser',
+    ]);
+    const routerSpy = jasmine.createSpyObj('RouterAdapterService', [
+      'navigate',
+    ]);
 
     await TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, RouterTestingModule],
@@ -28,16 +34,22 @@ describe('LoginComponent', () => {
         { provide: LoginUserService, useValue: loginUserServiceSpy },
         { provide: JwtService, useValue: jwtServiceSpy },
         { provide: UserStateService, useValue: userMemoryServiceSpy },
-        { provide: RouterAdapterService, useValue: routerSpy }
-      ]
+        { provide: RouterAdapterService, useValue: routerSpy },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
-    loginUserService = TestBed.inject(LoginUserService) as jasmine.SpyObj<LoginUserService>;
+    loginUserService = TestBed.inject(
+      LoginUserService,
+    ) as jasmine.SpyObj<LoginUserService>;
     jwtService = TestBed.inject(JwtService) as jasmine.SpyObj<JwtService>;
-    userStateService = TestBed.inject(UserStateService) as jasmine.SpyObj<UserStateService>;
-    router = TestBed.inject(RouterAdapterService) as jasmine.SpyObj<RouterAdapterService>;
+    userStateService = TestBed.inject(
+      UserStateService,
+    ) as jasmine.SpyObj<UserStateService>;
+    router = TestBed.inject(
+      RouterAdapterService,
+    ) as jasmine.SpyObj<RouterAdapterService>;
 
     fixture.detectChanges();
   });
@@ -65,7 +77,18 @@ describe('LoginComponent', () => {
   it('should call loginUserService.login on loginUser', () => {
     const user = { email: 'test@test.com', password: 'password' };
     component.loginUserForm.setValue(user);
-    loginUserService.login.and.returnValue(of({ token: 'token', usuario: { id: '1', username: 'test', email: 'test@test.com', tipoUsuario: 'user' } }));
+    loginUserService.login.and.returnValue(
+      of({
+        token: 'token',
+        usuario: {
+          id: '1',
+          username: 'test',
+          email: 'test@test.com',
+          tipoUsuario: 'user',
+          tipoCliente: 'persona',
+        },
+      }),
+    );
 
     component.loginUser();
 
@@ -74,7 +97,16 @@ describe('LoginComponent', () => {
 
   it('should save token and set user on successful login', () => {
     const user = { email: 'test@test.com', password: 'password' };
-    const response = { token: 'token', usuario: { id: '1', username: 'test', email: 'test@test.com', tipoUsuario: 'user' } };
+    const response = {
+      token: 'token',
+      usuario: {
+        id: '1',
+        username: 'test',
+        email: 'test@test.com',
+        tipoUsuario: 'user',
+        tipoCliente: 'persona',
+      },
+    };
     component.loginUserForm.setValue(user);
     loginUserService.login.and.returnValue(of(response));
 
@@ -89,7 +121,9 @@ describe('LoginComponent', () => {
     const user = { email: 'test@test.com', password: 'password' };
     const errorMessage = 'Login error';
     component.loginUserForm.setValue(user);
-    loginUserService.login.and.returnValue(throwError(() => ({ error: errorMessage })));
+    loginUserService.login.and.returnValue(
+      throwError(() => ({ error: errorMessage })),
+    );
 
     component.loginUser();
     fixture.detectChanges();
@@ -105,7 +139,18 @@ describe('LoginComponent', () => {
   it('should submit the form and call loginUser', () => {
     const user = { email: 'test@test.com', password: 'password' };
     component.loginUserForm.setValue(user);
-    loginUserService.login.and.returnValue(of({ token: 'token', usuario: { id: '1', username: 'test', email: 'test@test.com', tipoUsuario: 'user' } }));
+    loginUserService.login.and.returnValue(
+      of({
+        token: 'token',
+        usuario: {
+          id: '1',
+          username: 'test',
+          email: 'test@test.com',
+          tipoUsuario: 'user',
+          tipoCliente: 'persona',
+        },
+      }),
+    );
 
     const form = fixture.nativeElement.querySelector('form');
     form.dispatchEvent(new Event('submit'));

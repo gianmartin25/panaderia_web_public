@@ -7,6 +7,10 @@ import { BaseHttpService } from '../../shared/data-access/base-http.service';
 })
 export class ClientPersonService extends BaseHttpService {
   registerPerson(registerToPerson: RegisterClientPerson) {
-    return this.http.post(`${this.apiUrl}/registrar-usuario/persona`, registerToPerson)
+    return this.http.post(`${this.apiUrl}/usuarios/persona`, registerToPerson)
+  }
+
+  deletePersons() {
+    return this.http.delete(`${this.apiUrl}/usuarios`);
   }
 }

@@ -14,4 +14,5 @@ export interface Usuario {
     username:    string;
     email:       string;
     tipoUsuario: string;
+    tipoCliente: string;
 }
