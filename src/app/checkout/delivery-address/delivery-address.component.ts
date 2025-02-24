@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { CheckoutService } from '../../shared/data-access/checkout.service';
+import { PaymentService } from '../../shared/data-access/payment.service';
 import { CartStateService } from '../../shared/data-access/cart-state.service';
 import { DeliveryAddressService } from '../services/delivery-address.service';
 import { OrderService } from '../../orders/services/order.service';
@@ -16,7 +16,7 @@ import { OrderStorageService } from '../../orders/services/order-storage.service
   styleUrl: './delivery-address.component.scss',
 })
 export class DeliveryAddressComponent {
-  private checkoutService = inject(CheckoutService);
+  private checkoutService = inject(PaymentService);
   private cartState = inject(CartStateService).state;
   private formBuilder = inject(FormBuilder);
   private userService = inject(UserStateService);
@@ -94,7 +94,7 @@ export class DeliveryAddressComponent {
 
     if (!orderId) return;
 
-    this.checkoutService.createCheckoutSession(orderId, lineItems).subscribe(
+    this.checkoutService.initiatePaymentSession(orderId, lineItems).subscribe(
       (response) => {
         // Redirigir al formulario de Stripe
         window.location.href = response.url;

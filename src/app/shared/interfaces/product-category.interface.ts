@@ -1,6 +1,4 @@
-export interface ProducCategory {
+export interface ProductCategory {
     id:          number;
     nombre:      string;
-    descripcion: null;
-    eliminado:   boolean;
 }

@@ -2,16 +2,17 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoginUserService } from '../../products/data-access/login-user.service';
+import { CartStateService } from '../../shared/data-access/cart-state.service';
 import { UserRequest } from '../../shared/interfaces/user';
 import { RouterAdapterService } from '../../shared/services/router-adapter.service';
 import { JwtService } from '../services/jwt.service';
-import { UserStateService } from '../services/user-state.service';
 import { UserLocalStorageService } from '../services/user-local-storage.service';
+import { UserStateService } from '../services/user-state.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -21,6 +22,7 @@ export class LoginComponent {
   private jwtService = inject(JwtService);
   private userStateService = inject(UserStateService);
   private userLocalStorageService = inject(UserLocalStorageService);
+  private cartState = inject(CartStateService).state;
   private router = inject(RouterAdapterService);
   public errorMessage = '';
 
@@ -36,6 +38,7 @@ export class LoginComponent {
 
   loginUser() {
     if (this.loginUserForm.invalid) return;
+    this.cartState.clearCart();
     const user = this.loginUserForm.value as UserRequest;
     this.loginUserService.login(user).subscribe({
       next: (response) => {

@@ -23,7 +23,7 @@ interface StatePage {
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsSateService {
+export class ProductsStateService {
   private productsService = inject(ProductsService);
 
   private initialState: State = {

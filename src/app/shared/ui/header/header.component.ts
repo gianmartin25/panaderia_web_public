@@ -8,7 +8,7 @@ import {
   RouterModule,
 } from '@angular/router';
 import { JwtService } from '../../../auth/services/jwt.service';
-import { ProductsSateService } from '../../../products/data-access/products-state.service';
+import { ProductsStateService } from '../../../products/data-access/products-state.service';
 import { CartStateService } from '../../data-access/cart-state.service';
 import { UserStateService } from '../../../auth/services/user-state.service';
 import { UserLocalStorageService } from '../../../auth/services/user-local-storage.service';
@@ -28,7 +28,7 @@ import { UserLocalStorageService } from '../../../auth/services/user-local-stora
 })
 export class HeaderComponent {
   cartState = inject(CartStateService).state;
-  productsStateService = inject(ProductsSateService);
+  productsStateService = inject(ProductsStateService);
   userStateService = inject(UserStateService);
   jwtService = inject(JwtService);
   userLocalStorageService = inject(UserLocalStorageService);
@@ -52,6 +52,7 @@ export class HeaderComponent {
   }
 
   onLogout() {
+    this.cartState.clearCart();
     this.userStateService.setUser(null!);
     this.userLocalStorageService.setUser(null!);
     this.jwtService.saveToken('');
