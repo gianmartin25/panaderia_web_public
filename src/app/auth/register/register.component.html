@@ -1,42 +1,62 @@
 <div class="max-w-4xl mx-auto font-[sans-serif] p-6">
-  <div class="text-center mb-2">
-    <a href="javascript:void(0)"><img src="https://readymadeui.com/readymadeui.svg" alt="logo"
-        class='w-52 inline-block' />
-    </a>
-    <h4 class="text-gray-800 text-base font-semibold mt-6">Crear Cuenta</h4>
+  <div class="text-center">
+    <h4 class="text-gray-800 text-xl font-semibold my-8">Crear Cuenta</h4>
   </div>
-  <div class="flex justify-center gap-10 my-8">
-    <!-- Opción Empresa -->
-    <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
-      <input id="bordered-radio-1" type="radio" name="bordered-radio" [value]="'Empresa'"
-        [checked]="selectedOption === 'Empresa'" (change)="onSelectionChange('Empresa')"
-        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-      <label for="bordered-radio-1" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-        Empresa
+  <fieldset class="grid grid-cols-2 mb-8 gap-4">
+    <legend class="sr-only">Delivery</legend>
+
+    <div>
+      <label
+        for="client-empresa"
+        class="flex cursor-pointer justify-between gap-4 rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-xs hover:border-gray-200 has-[:checked]:border-blue-500 has-[:checked]:ring-1 has-[:checked]:ring-blue-500"
+      >
+        <div>
+          <p class="text-gray-700">Empresa</p>
+
+          <p class="mt-1 text-gray-900">RUC</p>
+        </div>
+
+        <input
+          type="radio"
+          name="type-client-option"
+          id="client-empresa"
+          class="size-5 border-gray-300 text-blue-600"
+          [value]="'Empresa'"
+          [checked]="selectedOption === 'Empresa'"
+          (change)="onSelectionChange('Empresa')"
+        />
       </label>
     </div>
-  
-    <!-- Opción Persona -->
-    <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
-      <input id="bordered-radio-2" type="radio" name="bordered-radio" [value]="'Persona'"
-        [checked]="selectedOption === 'Persona'" (change)="onSelectionChange('Persona')"
-        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-      <label for="bordered-radio-2" class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-        Persona
+
+    <div>
+      <label
+        for="client-persona"
+        class="flex cursor-pointer justify-between gap-4 rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-xs hover:border-gray-200 has-[:checked]:border-blue-500 has-[:checked]:ring-1 has-[:checked]:ring-blue-500"
+      >
+        <div>
+          <p class="text-gray-700">Persona</p>
+
+          <p class="mt-1 text-gray-900">DNI</p>
+        </div>
+
+        <input
+          type="radio"
+          name="type-client-option"
+          id="client-persona"
+          class="size-5 border-gray-300 text-blue-500"
+          [value]="'Persona'"
+          [checked]="selectedOption === 'Persona'"
+          (change)="onSelectionChange('Persona')"
+        />
       </label>
     </div>
-  </div>
-  @if (selectedOption === 'Empresa') {
+  </fieldset>
+  @if (selectedOption === "Empresa") {
     <app-form-register-client-company />
-    }
-    @else {
+  } @else {
     <app-form-register-client-person />
-    }
+  }
 </div>
-
-
-
-
 
 <!-- <div class="max-w-4xl mx-auto font-[sans-serif] p-6">
     <div class="text-center mb-16">
@@ -81,4 +101,3 @@
       </div>
     </form>
   </div> -->
-

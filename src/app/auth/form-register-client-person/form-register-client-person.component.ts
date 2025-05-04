@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { RegisterClientPerson } from '../../shared/interfaces/register-client-person.interface';
-import { ClientPersonService } from '../../products/data-access/client-person.service';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ClientPersonService } from '../services/users/client-person.service';
 
 @Component({
   selector: 'app-form-register-client-person',

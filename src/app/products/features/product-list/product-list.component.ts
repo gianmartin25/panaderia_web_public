@@ -30,7 +30,7 @@ export default class ProductListComponent implements OnInit {
   currentPage = computed(() => this.productsStateService.state.currentPage());
   totalPages = computed(() => this.productsStateService.state.totalPages());
   categories: ProductCategory[] = [];
-  categoriaId = computed(() => this.productsStateService.state.categoriaId());
+  categoryId = computed(() => this.productsStateService.state.categoriaId());
 
   addToCart(product: Product) {
     this.cartState.add({
@@ -66,7 +66,7 @@ export default class ProductListComponent implements OnInit {
 
   changePage(page: number): void {
     this.router.navigate(['/products'], {
-      queryParams: { page, size: 10, category: this.categoriaId() },
+      queryParams: { page, size: 10, category: this.categoryId() },
     });
   }
 }

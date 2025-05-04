@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BaseHttpService } from '../../shared/data-access/base-http.service';
 import { Observable } from 'rxjs';
-import { Product, ResponseProduct } from '../../shared/interfaces/product.interface';
+import { BaseHttpService } from '../../../shared/data-access/base-http.service';
+import { Product, ResponseProduct } from '../../../shared/interfaces/product.interface';
 
-const LIMIT = 5;
 
 @Injectable({ providedIn: 'root' })
 export class ProductsService extends BaseHttpService {

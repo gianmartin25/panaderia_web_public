@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BaseHttpService } from '../../shared/data-access/base-http.service';
-import { UserRequest, UserResponse } from '../../shared/interfaces/user';
+import { BaseHttpService } from '../../../shared/data-access/base-http.service';
+import { UserRequest, UserResponse } from '../../../shared/interfaces/user';
 
 @Injectable({
   providedIn: 'root'

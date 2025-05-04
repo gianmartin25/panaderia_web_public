@@ -2,11 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, throwError } from 'rxjs';
-import { LoginUserService } from '../../products/data-access/login-user.service';
 import { RouterAdapterService } from '../../shared/services/router-adapter.service';
 import { JwtService } from '../services/jwt.service';
 import { LoginComponent } from './login.component';
 import { UserStateService } from '../services/user-state.service';
+import { LoginUserService } from '../services/users/login-user.service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -17,16 +17,10 @@ describe('LoginComponent', () => {
   let router: jasmine.SpyObj<RouterAdapterService>;
 
   beforeEach(async () => {
-    const loginUserServiceSpy = jasmine.createSpyObj('LoginUserService', [
-      'login',
-    ]);
+    const loginUserServiceSpy = jasmine.createSpyObj('LoginUserService', ['login']);
     const jwtServiceSpy = jasmine.createSpyObj('JwtService', ['saveToken']);
-    const userMemoryServiceSpy = jasmine.createSpyObj('UserMemoryService', [
-      'setUser',
-    ]);
-    const routerSpy = jasmine.createSpyObj('RouterAdapterService', [
-      'navigate',
-    ]);
+    const userMemoryServiceSpy = jasmine.createSpyObj('UserMemoryService', ['setUser']);
+    const routerSpy = jasmine.createSpyObj('RouterAdapterService', ['navigate']);
 
     await TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, RouterTestingModule],
@@ -40,30 +34,24 @@ describe('LoginComponent', () => {
 
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
-    loginUserService = TestBed.inject(
-      LoginUserService,
-    ) as jasmine.SpyObj<LoginUserService>;
+    loginUserService = TestBed.inject(LoginUserService) as jasmine.SpyObj<LoginUserService>;
     jwtService = TestBed.inject(JwtService) as jasmine.SpyObj<JwtService>;
-    userStateService = TestBed.inject(
-      UserStateService,
-    ) as jasmine.SpyObj<UserStateService>;
-    router = TestBed.inject(
-      RouterAdapterService,
-    ) as jasmine.SpyObj<RouterAdapterService>;
+    userStateService = TestBed.inject(UserStateService) as jasmine.SpyObj<UserStateService>;
+    router = TestBed.inject(RouterAdapterService) as jasmine.SpyObj<RouterAdapterService>;
 
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('debería crear el componente', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have a form with email and password controls', () => {
+  it('debería tener un formulario con controles de email y contraseña', () => {
     expect(component.loginUserForm.contains('email')).toBeTruthy();
     expect(component.loginUserForm.contains('password')).toBeTruthy();
   });
 
-  it('should make the email and password controls required', () => {
+  it('debería hacer que los controles de email y contraseña sean obligatorios', () => {
     const emailControl = component.loginUserForm.get('email');
     const passwordControl = component.loginUserForm.get('password');
 
@@ -74,7 +62,7 @@ describe('LoginComponent', () => {
     expect(passwordControl?.valid).toBeFalsy();
   });
 
-  it('should call loginUserService.login on loginUser', () => {
+  it('debería llamar a loginUserService.login al iniciar sesión', () => {
     const user = { email: 'test@test.com', password: 'password' };
     component.loginUserForm.setValue(user);
     loginUserService.login.and.returnValue(
@@ -95,7 +83,7 @@ describe('LoginComponent', () => {
     expect(loginUserService.login).toHaveBeenCalledWith(user);
   });
 
-  it('should save token and set user on successful login', () => {
+  it('debería guardar el token y establecer el usuario al iniciar sesión correctamente', () => {
     const user = { email: 'test@test.com', password: 'password' };
     const response = {
       token: 'token',
@@ -117,9 +105,9 @@ describe('LoginComponent', () => {
     expect(router.navigate).toHaveBeenCalledWith('/products');
   });
 
-  it('should handle login error', () => {
+  it('debería manejar el error de inicio de sesión', () => {
     const user = { email: 'test@test.com', password: 'password' };
-    const errorMessage = 'Login error';
+    const errorMessage = 'Error de inicio de sesión';
     component.loginUserForm.setValue(user);
     loginUserService.login.and.returnValue(
       throwError(() => ({ error: errorMessage })),
@@ -136,7 +124,7 @@ describe('LoginComponent', () => {
     expect(router.navigate).not.toHaveBeenCalled();
   });
 
-  it('should submit the form and call loginUser', () => {
+  it('debería enviar el formulario y llamar a loginUser', () => {
     const user = { email: 'test@test.com', password: 'password' };
     component.loginUserForm.setValue(user);
     loginUserService.login.and.returnValue(

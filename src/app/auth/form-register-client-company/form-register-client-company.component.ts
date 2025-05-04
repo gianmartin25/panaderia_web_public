@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { ClientCompanyService } from '../../products/data-access/client-company.service';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { RegisterClientCompany } from '../../shared/interfaces/register-client-company.interface';
 import { CommonModule } from '@angular/common';
+import { ClientCompanyService } from '../services/users/client-company.service';
 
 @Component({
   selector: 'app-form-register-client-company',

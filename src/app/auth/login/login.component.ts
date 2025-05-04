@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LoginUserService } from '../../products/data-access/login-user.service';
 import { CartStateService } from '../../shared/data-access/cart-state.service';
 import { UserRequest } from '../../shared/interfaces/user';
 import { RouterAdapterService } from '../../shared/services/router-adapter.service';
 import { JwtService } from '../services/jwt.service';
 import { UserLocalStorageService } from '../services/user-local-storage.service';
 import { UserStateService } from '../services/user-state.service';
+import { LoginUserService } from '../services/users/login-user.service';
 
 @Component({
   selector: 'app-login',

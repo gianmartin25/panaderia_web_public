@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { Product } from '../../shared/interfaces/product.interface';
 import { signalSlice } from 'ngxtension/signal-slice';
-import { ProductsService } from './products.service';
 import { Observable, map, switchMap } from 'rxjs';
+import { ProductsService } from './products/products.service';
 
 interface State {
   product: Product | null;

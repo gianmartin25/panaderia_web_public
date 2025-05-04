@@ -13,7 +13,7 @@ export interface ResponseProduct {
   totalPages:  number;
   currentPage: number;
   categoriaId: number;
-  productos:   Product[];
+  products:   Product[];
 }
 
 export interface Product {

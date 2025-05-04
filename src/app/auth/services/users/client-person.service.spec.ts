@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { RegisterClientPerson } from '../../shared/interfaces/register-client-person.interface';
 import { ClientPersonService } from './client-person.service';
+import { RegisterClientPerson } from '../../../shared/interfaces/register-client-person.interface';
 
 describe('ClientPersonService', () => {
   let service: ClientPersonService;

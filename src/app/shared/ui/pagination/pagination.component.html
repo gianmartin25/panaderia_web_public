@@ -1,9 +1,6 @@
 <nav aria-label="Page navigation example" class="my-4">
   <ul class="flex items-center -space-x-px h-8 text-sm">
     <!-- Botón anterior -->
-    {{
-      pages | json
-    }}
     <li>
       <button
         (click)="navigateToPage(currentPage - 1)"
