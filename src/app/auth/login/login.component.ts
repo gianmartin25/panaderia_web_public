@@ -48,7 +48,7 @@ export class LoginComponent {
         this.userLocalStorageService.setUser(response.usuario);
       },
       error: ({ error }) => {
-        this.errorMessage = error;
+        this.errorMessage = error.error;
       },
     });
   }

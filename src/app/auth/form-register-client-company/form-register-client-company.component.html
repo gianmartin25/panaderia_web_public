@@ -1,68 +1,78 @@
 <form [formGroup]="formRegisterCompany" (ngSubmit)="onSubmit()">
   <div class="grid sm:grid-cols-2 gap-8">
     <div>
-      <label for="firstName" class="text-gray-800 text-sm mb-2 block"
-        >Nombre</label
-      >
+      <label for="firstName" class="text-gray-800 text-sm mb-2 block">Nombre</label>
       <input
         id="firstName"
         name="name"
         type="text"
         formControlName="nombreEmpresa"
-        class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
+        [ngClass]="{
+          'bg-red-100 border border-red-400 focus:bg-red-50': formRegisterCompany.get('nombreEmpresa')?.invalid && (formRegisterCompany.get('nombreEmpresa')?.touched || formRegisterCompany.get('nombreEmpresa')?.dirty),
+          'bg-gray-100': !(formRegisterCompany.get('nombreEmpresa')?.invalid && (formRegisterCompany.get('nombreEmpresa')?.touched || formRegisterCompany.get('nombreEmpresa')?.dirty))
+        }"
+        class="w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
         placeholder="Enter name"
       />
     </div>
     <div>
-      <label for="lastName" class="text-gray-800 text-sm mb-2 block"
-        >Razon Social</label
-      >
+      <label for="lastName" class="text-gray-800 text-sm mb-2 block">Razon Social</label>
       <input
         id="lastName"
         name="lname"
         type="text"
         formControlName="razonSocial"
-        class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
+        [ngClass]="{
+          'bg-red-100 border border-red-400 focus:bg-red-50': formRegisterCompany.get('razonSocial')?.invalid && (formRegisterCompany.get('razonSocial')?.touched || formRegisterCompany.get('razonSocial')?.dirty),
+          'bg-gray-100': !(formRegisterCompany.get('razonSocial')?.invalid && (formRegisterCompany.get('razonSocial')?.touched || formRegisterCompany.get('razonSocial')?.dirty))
+        }"
+        class="w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
         placeholder="Enter last name"
       />
     </div>
     <div>
-      <label for="lastName" class="text-gray-800 text-sm mb-2 block"
-        >Username</label
-      >
+      <label for="username" class="text-gray-800 text-sm mb-2 block">Username</label>
       <input
-        id="lastName"
-        name="lname"
+        id="username"
+        name="username"
         type="text"
         formControlName="username"
-        class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
-        placeholder="Enter last name"
+        [ngClass]="{
+          'bg-red-100 border border-red-400 focus:bg-red-50': formRegisterCompany.get('username')?.invalid && (formRegisterCompany.get('username')?.touched || formRegisterCompany.get('username')?.dirty),
+          'bg-gray-100': !(formRegisterCompany.get('username')?.invalid && (formRegisterCompany.get('username')?.touched || formRegisterCompany.get('username')?.dirty))
+        }"
+        class="w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
+        placeholder="Enter username"
       />
     </div>
     <div>
-      <label for="numeroDocumento" class="text-gray-800 text-sm mb-2 block"
-        >RUC:</label
-      >
+      <label for="numeroDocumento" class="text-gray-800 text-sm mb-2 block">RUC:</label>
       <input
         id="numeroDocumento"
         name="numeroDocumento"
         type="text"
         formControlName="numeroDocumento"
-        class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
-        placeholder="Enter last name"
+        [ngClass]="{
+          'bg-red-100 border border-red-400 focus:bg-red-50': formRegisterCompany.get('numeroDocumento')?.invalid && (formRegisterCompany.get('numeroDocumento')?.touched || formRegisterCompany.get('numeroDocumento')?.dirty),
+          'bg-gray-100': !(formRegisterCompany.get('numeroDocumento')?.invalid && (formRegisterCompany.get('numeroDocumento')?.touched || formRegisterCompany.get('numeroDocumento')?.dirty))
+        }"
+        class="w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
+        placeholder="Enter RUC"
       />
     </div>
     <div>
-      <label for="lastName" class="text-gray-800 text-sm mb-2 block"
-        >Dirección</label
-      >
+      <label for="direccionEmpresa" class="text-gray-800 text-sm mb-2 block">Dirección</label>
       <input
-        id="lastName"
-        name="lname"
+        id="direccionEmpresa"
+        name="direccionEmpresa"
         type="text"
         formControlName="direccionEmpresa"
-        class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
-        placeholder="Enter last name"
+        [ngClass]="{
+          'bg-red-100 border border-red-400 focus:bg-red-50': formRegisterCompany.get('direccionEmpresa')?.invalid && (formRegisterCompany.get('direccionEmpresa')?.touched || formRegisterCompany.get('direccionEmpresa')?.dirty),
+          'bg-gray-100': !(formRegisterCompany.get('direccionEmpresa')?.invalid && (formRegisterCompany.get('direccionEmpresa')?.touched || formRegisterCompany.get('direccionEmpresa')?.dirty))
+        }"
+        class="w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
+        placeholder="Enter address"
       />
     </div>
     <div>
@@ -72,48 +82,57 @@
         name="email"
         type="email"
         formControlName="email"
-        class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
+        [ngClass]="{
+          'bg-red-100 border border-red-400 focus:bg-red-50': formRegisterCompany.get('email')?.invalid && (formRegisterCompany.get('email')?.touched || formRegisterCompany.get('email')?.dirty),
+          'bg-gray-100': !(formRegisterCompany.get('email')?.invalid && (formRegisterCompany.get('email')?.touched || formRegisterCompany.get('email')?.dirty))
+        }"
+        class="w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
         placeholder="Enter email"
       />
     </div>
     <div>
-      <label for="mobileNumber" class="text-gray-800 text-sm mb-2 block"
-        >Teléfono</label
-      >
+      <label for="mobileNumber" class="text-gray-800 text-sm mb-2 block">Teléfono</label>
       <input
         id="mobileNumber"
         name="number"
         type="number"
         formControlName="telefono"
-        class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
+        [ngClass]="{
+          'bg-red-100 border border-red-400 focus:bg-red-50': formRegisterCompany.get('telefono')?.invalid && (formRegisterCompany.get('telefono')?.touched || formRegisterCompany.get('telefono')?.dirty),
+          'bg-gray-100': !(formRegisterCompany.get('telefono')?.invalid && (formRegisterCompany.get('telefono')?.touched || formRegisterCompany.get('telefono')?.dirty))
+        }"
+        class="w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
         placeholder="Enter mobile number"
       />
     </div>
     <div>
-      <label for="password" class="text-gray-800 text-sm mb-2 block"
-        >Password</label
-      >
+      <label for="password" class="text-gray-800 text-sm mb-2 block">Password</label>
       <input
         id="password"
         name="password"
         type="password"
         formControlName="password"
-        class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
+        [ngClass]="{
+          'bg-red-100 border border-red-400 focus:bg-red-50': formRegisterCompany.get('password')?.invalid && (formRegisterCompany.get('password')?.touched || formRegisterCompany.get('password')?.dirty),
+          'bg-gray-100': !(formRegisterCompany.get('password')?.invalid && (formRegisterCompany.get('password')?.touched || formRegisterCompany.get('password')?.dirty))
+        }"
+        class="w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
         placeholder="Enter password"
       />
     </div>
-
   </div>
 
   <div class="!mt-12">
     <button
       type="submit"
+      [disabled]="isLoading"
       class="py-3.5 px-7 text-sm font-semibold tracking-wider rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
     >
       Registrar
     </button>
   </div>
 </form>
+<app-loader-email *ngIf="isLoading" [text]="'Enviando correo...'" />
 <!-- Mensaje de éxito o error -->
 <div
   *ngIf="status"

@@ -31,11 +31,23 @@
                 </svg>
                 Agregar al carrito
               </button>
+              <div
+                *ngIf="alertMessage"
+                class="ml-4 px-3 py-2 rounded-lg bg-red-100 border border-red-300 text-red-800 text-xs flex items-center gap-2 shadow"
+              >
+                <span>{{ alertMessage }}</span>
+                <button (click)="closeAlert()" class="text-red-700 hover:underline font-bold text-xs">✕</button>
+              </div>
             </div>
           </div>
           <div>
-            <button (click)="onRead()">
-              <img class="h-8" src="microphone-of-voice_icon.png" alt="">
+            <button
+              (click)="onRead()"
+              tabindex="0"
+              aria-label="Leer descripción del producto"
+              type="button"
+            >
+              <img class="h-8" src="microphone-of-voice_icon.png" alt="Leer descripción" />
             </button>
           </div>
         </div>

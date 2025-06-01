@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import {
   Router,
@@ -12,6 +12,8 @@ import { ProductsStateService } from '../../../products/data-access/products-sta
 import { CartStateService } from '../../data-access/cart-state.service';
 import { UserStateService } from '../../../auth/services/user-state.service';
 import { UserLocalStorageService } from '../../../auth/services/user-local-storage.service';
+import { Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -26,7 +28,7 @@ import { UserLocalStorageService } from '../../../auth/services/user-local-stora
   templateUrl: './header.component.html',
   styles: ``,
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
   cartState = inject(CartStateService).state;
   productsStateService = inject(ProductsStateService);
   userStateService = inject(UserStateService);
@@ -37,6 +39,30 @@ export class HeaderComponent {
   productSearchForm = new FormGroup({
     productName: new FormControl(''),
   });
+
+  private searchSub?: Subscription;
+
+  ngOnInit() {
+    this.searchSub = this.productSearchForm
+      .get('productName')!
+      .valueChanges.pipe(
+        debounceTime(500),
+        distinctUntilChanged()
+      )
+      .subscribe((value) => {
+        this.route.navigate(['products'], {
+          queryParams: {
+            nombre: value,
+            page: 1,
+            category: this.productsStateService.state.categoriaId(),
+          },
+        });
+      });
+  }
+
+  ngOnDestroy() {
+    this.searchSub?.unsubscribe();
+  }
 
   onSubmit() {
     console.log(this.productSearchForm.value);

@@ -8,12 +8,20 @@
 //   title: string;
 // }
 
+export interface ExistStockResponse {
+  productoId:      number;
+  stockDisponible: boolean;
+}
+
+
 export interface ResponseProduct {
   totalItems:  number;
   totalPages:  number;
   currentPage: number;
   categoriaId: number;
   products:   Product[];
+  sortBy:      string;
+  sortDirection: string;
 }
 
 export interface Product {

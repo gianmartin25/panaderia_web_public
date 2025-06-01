@@ -3,7 +3,7 @@
     class="max-w-screen-xl flex flex-wrap items-center gap-20 justify-between mx-auto p-4"
   >
     <a
-      routerLink="/"
+      routerLink="/products"
       class="flex items-center w-1/8 space-x-3 rtl:space-x-reverse"
     >
       <img src="/logo_black.svg" class="h-12 w-full" alt="Logo" />
@@ -123,7 +123,7 @@
             <!-- Dropdown Menu -->
             <div
               *ngIf="dropdownOpen"
-              class="absolute right-0 mt-2 bg-white text-black rounded-lg shadow-lg w-48"
+              class="absolute right-0 mt-2 bg-white text-black rounded-lg shadow-lg w-48 z-10"
             >
               <p class="px-4 py-2 font-bold border-b">
                 {{ this.userStateService.getUser()?.username }}

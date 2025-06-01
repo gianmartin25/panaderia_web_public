@@ -18,6 +18,8 @@ interface StatePage {
   size: number;
   categoriaId: number;
   nombre: string;
+  sortBy?: string;
+  sortDirection?: string;
 }
 
 @Injectable({
@@ -38,20 +40,22 @@ export class ProductsStateService {
   changePage$ = new Subject<StatePage>();
 
   loadProducts$ = this.changePage$.pipe(
-    startWith({ page: 1, size: 5, categoriaId: 0, nombre: '' }),
-    switchMap(({ page, size, categoriaId, nombre }) => this.productsService.getProducts(page, size, categoriaId, nombre).pipe(
-      map((productResponse) => ({
-        ...productResponse,
-        status: 'success' as const,
-        currentPage: page, // actualizamos la página actual
-      })),
-      catchError(() => {
-        return of({
-          ...this.initialState,
-          status: 'error' as const,
-        });
-      })
-    ))
+    startWith({ page: 1, size: 5, categoriaId: 0, nombre: '', sortBy: 'precio', sortDirection: 'asc' }),
+    switchMap(({ page, size, categoriaId, nombre, sortBy, sortDirection }) =>
+      this.productsService.getProducts(page, size, categoriaId, nombre, sortBy, sortDirection).pipe(
+        map((productResponse) => ({
+          ...productResponse,
+          status: 'success' as const,
+          currentPage: page,
+        })),
+        catchError(() => {
+          return of({
+            ...this.initialState,
+            status: 'error' as const,
+          });
+        })
+      )
+    )
   );
 
   state = signalSlice({
