@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PaymentService } from '../../shared/data-access/payment.service';
 import { CartStateService } from '../../shared/data-access/cart-state.service';
 import { DeliveryAddressService } from '../services/delivery-address.service';
@@ -7,11 +7,12 @@ import { OrderService } from '../../orders/services/order.service';
 import { OrderProductRequest } from '../../orders/interfaces/order-product-request.interface';
 import { UserStateService } from '../../auth/services/user-state.service';
 import { OrderStorageService } from '../../orders/services/order-storage.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-delivery-address',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './delivery-address.component.html',
   styleUrl: './delivery-address.component.scss',
 })
@@ -24,11 +25,23 @@ export class DeliveryAddressComponent {
   private deliveryAddressService = inject(DeliveryAddressService);
   private orderStorageService = inject(OrderStorageService);
   public formDeliveryAddress = this.formBuilder.group({
-    nombre: 'Gian Martin Hermenegildo',
-    direccion: 'Av calle 5 - Los olivos',
-    ciudad: 'Lima',
-    codigoPostal: '1123',
-    numeroDni: '12345678',
+    nombre: [
+      'Gian Martin Hermenegildo',
+      [Validators.required, Validators.minLength(2)],
+    ],
+    direccion: [
+      'Av calle 5 - Los olivos',
+      [Validators.required, Validators.minLength(5)],
+    ],
+    ciudad: ['Lima', [Validators.required]],
+    codigoPostal: [
+      '1123',
+      [Validators.required, Validators.pattern(/^\d{3,10}$/)],
+    ],
+    numeroDni: [
+      '12345678',
+      [Validators.required, Validators.pattern(/^\d{8}$/)],
+    ],
   });
 
   onContinue() {

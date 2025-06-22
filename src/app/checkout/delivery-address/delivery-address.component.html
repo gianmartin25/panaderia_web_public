@@ -1,42 +1,78 @@
 <div class="max-w-4xl mx-auto font-[sans-serif] min-h-[70vh] p-6">
     <h1 class="text-center text-3xl my-6">Dirección de Entrega</h1>
-    <form [formGroup]="formDeliveryAddress"  (ngSubmit)="onContinue()">
+    <form [formGroup]="formDeliveryAddress" (ngSubmit)="onContinue()">
         <div class="grid sm:grid-cols-2 gap-8">
             <div>
-                <label for="firstName" class="text-gray-800 text-sm mb-2 block">Nombre</label>
-                <input id="firstName" name="name" type="text"  formControlName="nombre"
-                    class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
-                    placeholder="Enter name" />
+                <label for="firstName" class="text-gray-800 text-sm mb-2 block">
+                  Nombre <span class="text-red-600">*</span>
+                </label>
+                <input id="firstName" name="name" type="text" formControlName="nombre"
+                    class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all
+                    "
+                    [ngClass]="{'border-red-500 border-2': formDeliveryAddress.get('nombre')?.invalid && (formDeliveryAddress.get('nombre')?.touched || formDeliveryAddress.get('nombre')?.dirty)}"
+                    placeholder="Ingrese su nombre" />
+                <div *ngIf="formDeliveryAddress.get('nombre')?.invalid && (formDeliveryAddress.get('nombre')?.touched || formDeliveryAddress.get('nombre')?.dirty)" class="text-red-600 text-xs mt-1">
+                  El nombre es obligatorio.
+                </div>
             </div>
             <div>
-                <label for="firstName" class="text-gray-800 text-sm mb-2 block">DNI</label>
-                <input id="firstName" name="name" type="text"  formControlName="numeroDni"
-                    class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
-                    placeholder="Enter name" />
+                <label for="dni" class="text-gray-800 text-sm mb-2 block">
+                  DNI <span class="text-red-600">*</span>
+                </label>
+                <input id="dni" name="dni" type="text" formControlName="numeroDni"
+                    class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all
+                    "
+                    [ngClass]="{'border-red-500 border-2': formDeliveryAddress.get('numeroDni')?.invalid && (formDeliveryAddress.get('numeroDni')?.touched || formDeliveryAddress.get('numeroDni')?.dirty)}"
+                    placeholder="Ingrese su DNI" />
+                <div *ngIf="formDeliveryAddress.get('numeroDni')?.invalid && (formDeliveryAddress.get('numeroDni')?.touched || formDeliveryAddress.get('numeroDni')?.dirty)" class="text-red-600 text-xs mt-1">
+                  El DNI es obligatorio.
+                </div>
             </div>
             <div>
-                <label for="lastName" class="text-gray-800 text-sm mb-2 block">Ciudad</label>
-                <input id="lastName" name="lname" type="text"  formControlName="ciudad"
-                    class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
-                    placeholder="Enter last name" />
+                <label for="lastName" class="text-gray-800 text-sm mb-2 block">
+                  Ciudad <span class="text-red-600">*</span>
+                </label>
+                <input id="lastName" name="lname" type="text" formControlName="ciudad"
+                    class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all
+                    "
+                    [ngClass]="{'border-red-500 border-2': formDeliveryAddress.get('ciudad')?.invalid && (formDeliveryAddress.get('ciudad')?.touched || formDeliveryAddress.get('ciudad')?.dirty)}"
+                    placeholder="Ingrese su ciudad" />
+                <div *ngIf="formDeliveryAddress.get('ciudad')?.invalid && (formDeliveryAddress.get('ciudad')?.touched || formDeliveryAddress.get('ciudad')?.dirty)" class="text-red-600 text-xs mt-1">
+                  La ciudad es obligatoria.
+                </div>
             </div>
             <div>
-                <label for="email" class="text-gray-800 text-sm mb-2 block">Dirección</label>
-                <input id="email" name="email" type="text"  formControlName="direccion"
-                    class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
-                    placeholder="Enter email" />
+                <label for="direccion" class="text-gray-800 text-sm mb-2 block">
+                  Dirección <span class="text-red-600">*</span>
+                </label>
+                <input id="direccion" name="direccion" type="text" formControlName="direccion"
+                    class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all
+                    "
+                    [ngClass]="{'border-red-500 border-2': formDeliveryAddress.get('direccion')?.invalid && (formDeliveryAddress.get('direccion')?.touched || formDeliveryAddress.get('direccion')?.dirty)}"
+                    placeholder="Ingrese su dirección" />
+                <div *ngIf="formDeliveryAddress.get('direccion')?.invalid && (formDeliveryAddress.get('direccion')?.touched || formDeliveryAddress.get('direccion')?.dirty)" class="text-red-600 text-xs mt-1">
+                  La dirección es obligatoria.
+                </div>
             </div>
             <div>
-                <label for="mobileNumber" class="text-gray-800 text-sm mb-2 block">Código Postal</label>
-                <input id="mobileNumber" name="number" type="number" formControlName="codigoPostal"
-                    class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
-                    placeholder="Enter mobile number" />
+                <label for="codigoPostal" class="text-gray-800 text-sm mb-2 block">
+                  Código Postal <span class="text-red-600">*</span>
+                </label>
+                <input id="codigoPostal" name="codigoPostal" type="number" formControlName="codigoPostal"
+                    class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all
+                    "
+                    [ngClass]="{'border-red-500 border-2': formDeliveryAddress.get('codigoPostal')?.invalid && (formDeliveryAddress.get('codigoPostal')?.touched || formDeliveryAddress.get('codigoPostal')?.dirty)}"
+                    placeholder="Ingrese su código postal" />
+                <div *ngIf="formDeliveryAddress.get('codigoPostal')?.invalid && (formDeliveryAddress.get('codigoPostal')?.touched || formDeliveryAddress.get('codigoPostal')?.dirty)" class="text-red-600 text-xs mt-1">
+                  El código postal es obligatorio.
+                </div>
             </div>
         </div>
 
         <div class="!mt-12">
             <button type="submit"
-                class="py-3.5 px-7 text-sm font-semibold tracking-wider rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
+                class="py-3.5 px-7 text-sm font-semibold tracking-wider rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
+                [disabled]="formDeliveryAddress.invalid">
                 Continuar
             </button>
         </div>

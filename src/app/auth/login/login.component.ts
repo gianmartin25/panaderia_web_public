@@ -47,8 +47,13 @@ export class LoginComponent {
         this.router.navigate('/products');
         this.userLocalStorageService.setUser(response.usuario);
       },
-      error: ({ error }) => {
-        this.errorMessage = error.error;
+      error: ({ error, status }) => {
+        if (status === 401 || status === 403) {
+          this.errorMessage = error.error;
+          return;
+        }
+        this.errorMessage =
+          'No se pudo iniciar sesión. Por favor, inténtelo de nuevo más tarde.';
       },
     });
   }

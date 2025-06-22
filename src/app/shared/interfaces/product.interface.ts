@@ -22,6 +22,7 @@ export interface ResponseProduct {
   products:   Product[];
   sortBy:      string;
   sortDirection: string;
+  maxStock: number;
 }
 
 export interface Product {
@@ -35,6 +36,7 @@ export interface Product {
   categoriaNombre: string;
   proveedorId:     number;
   proveedorNombre: string;
+  maxStock: number;
 }
 
 
